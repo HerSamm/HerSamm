@@ -235,14 +235,14 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
   </style>
 
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1022"/><stop offset="1" stop-color="#121a33"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e0e17"/><stop offset="1" stop-color="#13132a"/></linearGradient>
     <radialGradient id="blue" cx="0" cy="0" r="1"><stop offset="0" stop-color="#2d7cff" stop-opacity=".35"/><stop offset="1" stop-color="#2d7cff" stop-opacity="0"/></radialGradient>
     <radialGradient id="orange" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".3"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
     <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fc4ff"/><stop offset=".45" stop-color="#9fc4ff" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity=".5"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <radialGradient id="ballg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#f4f6f8"/><stop offset="1" stop-color="#8f99a5"/></radialGradient>
     <radialGradient id="orbg" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff1c2"/><stop offset=".5" stop-color="#ffa23a"/><stop offset="1" stop-color="#ff6a00"/></radialGradient>
     <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse"><path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M14 32.33V48.5" fill="none" stroke="#fff" stroke-opacity=".05"/></pattern>
-    <clipPath id="panel"><rect width="{W}" height="{H}" rx="16"/></clipPath>
+    <clipPath id="panel"><rect width="{W}" height="{H}" rx="12"/></clipPath>
     {"".join(car_def(n, c) for n, c in CARS.items())}
   </defs>
 

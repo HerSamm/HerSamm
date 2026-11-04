@@ -51,14 +51,14 @@
   </style>
 
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1022"/><stop offset="1" stop-color="#121a33"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e0e17"/><stop offset="1" stop-color="#13132a"/></linearGradient>
     <radialGradient id="blue" cx="0" cy="0" r="1"><stop offset="0" stop-color="#2d7cff" stop-opacity=".35"/><stop offset="1" stop-color="#2d7cff" stop-opacity="0"/></radialGradient>
     <radialGradient id="orange" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".3"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
     <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fc4ff"/><stop offset=".45" stop-color="#9fc4ff" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity=".5"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <radialGradient id="ballg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#f4f6f8"/><stop offset="1" stop-color="#8f99a5"/></radialGradient>
     <radialGradient id="orbg" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff1c2"/><stop offset=".5" stop-color="#ffa23a"/><stop offset="1" stop-color="#ff6a00"/></radialGradient>
     <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse"><path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M14 32.33V48.5" fill="none" stroke="#fff" stroke-opacity=".05"/></pattern>
-    <clipPath id="panel"><rect width="760" height="336" rx="16"/></clipPath>
+    <clipPath id="panel"><rect width="760" height="336" rx="12"/></clipPath>
     
     <clipPath id="clip-octane"><path d="M6 52L4 36Q4 30 10 29L30 27L40 14Q42 11 46 11L70 11Q74 11 77 14L88 26L108 30Q118 32 120 40L121 48Q121 52 116 52L112 52L111 47A15 15 0 0 0 81 47L80 52L42 52L41 47A15 15 0 0 0 11 47L10 52Z"/></clipPath>
     <g id="octane">

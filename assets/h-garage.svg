@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="56" viewBox="0 0 880 56" role="img" aria-labelledby="t">
+<title id="t">GET /garage — Garage</title>
+<style>
+  text { font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+  :where(text:not([fill])) { fill: #9a9ab0; }
+  :where(text:not([font-size])) { font-size: 13px; }
+  .mono { font-family: Consolas, Menlo, 'Fira Code', 'Courier New', monospace; }
+  .fg { fill: #e6e6f0; } .soft { fill: #c9c9d9; } .brand { fill: #a397f7; } .ok { fill: #10b981; } .cyan { fill: #00b4d8; }
+  .k { fill: #a397f7; } .s { fill: #34d399; } .p { fill: #8b8ba3; }
+  .j { animation: show .3s ease-out backwards; }
+  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<g transform="translate(0 0)">
+  <rect x=".5" y=".5" width="879" height="47" rx="10" fill="#0f1a22" stroke="#1e4a55"/>
+  <rect x="16" y="14" width="40" height="20" rx="4" fill="#00b4d8"/>
+  <text x="36" y="28" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#06222b">GET</text>
+  <text x="68" y="29" class="mono fg" font-size="13">/garage</text>
+  <text x="139" y="29" class="fg" font-size="15" font-weight="700">Garage</text>
+  <line x1="206" y1="24" x2="800" y2="24" stroke="#2a3a44" stroke-dasharray="4 4"/>
+  <text x="864" y="29" text-anchor="end" class="mono ok" font-size="12">200 OK</text>
+</g>
+</svg>

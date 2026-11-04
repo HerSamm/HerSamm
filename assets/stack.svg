@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="308" viewBox="0 0 880 308" role="img" aria-labelledby="t">
+<title id="t">GET /stack — Lenguajes: C#, JavaScript, HTML5, CSS. Backend: .NET, ASP.NET Core, Minimal APIs. Frontend: HTML, CSS. Datos: Entity Framework Core, SQL Server, MySQL. Testing: Swagger, Postman</title>
+<style>
+  text { font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+  :where(text:not([fill])) { fill: #9a9ab0; }
+  :where(text:not([font-size])) { font-size: 13px; }
+  .mono { font-family: Consolas, Menlo, 'Fira Code', 'Courier New', monospace; }
+  .fg { fill: #e6e6f0; } .soft { fill: #c9c9d9; } .brand { fill: #a397f7; } .ok { fill: #10b981; } .cyan { fill: #00b4d8; }
+  .k { fill: #a397f7; } .s { fill: #34d399; } .p { fill: #8b8ba3; }
+  .j { animation: show .3s ease-out backwards; }
+  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<g transform="translate(0 0)">
+  <rect x=".5" y=".5" width="879" height="47" rx="10" fill="#0f1a22" stroke="#1e4a55"/>
+  <rect x="16" y="14" width="40" height="20" rx="4" fill="#00b4d8"/>
+  <text x="36" y="28" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#06222b">GET</text>
+  <text x="68" y="29" class="mono fg" font-size="13">/stack</text>
+  <text x="131" y="29" class="fg" font-size="15" font-weight="700">Stack tecnológico</text>
+  <line x1="293" y1="24" x2="800" y2="24" stroke="#2a3a44" stroke-dasharray="4 4"/>
+  <text x="864" y="29" text-anchor="end" class="mono ok" font-size="12">200 OK</text>
+</g>
+<rect x=".5" y="56.5" width="879" height="251" rx="10" fill="#0e0e17" stroke="#26263a"/>
+<line x1="28" y1="84" x2="28" y2="268" stroke="#5b3fd6" stroke-width="2"/>
+<circle cx="28" cy="84" r="6" fill="#10b981" stroke="#a397f7" stroke-width="2"/>
+<text x="48" y="89" class="fg" font-size="14" font-weight="700">Lenguajes</text>
+<g class="j" style="animation-delay:0.20s"><rect x="180" y="71" width="52" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="186" y="76" width="16" height="16" rx="3" fill="#9B4F96"/><text x="194" y="87.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">C#</text><text x="210" y="88.5" class="soft" font-size="12.5">C#</text></g>
+<g class="j" style="animation-delay:0.26s"><rect x="242.2" y="71" width="109" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="248.2" y="76" width="16" height="16" rx="3" fill="#F7DF1E"/><text x="256.2" y="87.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#111">JS</text><text x="272.2" y="88.5" class="soft" font-size="12.5">JavaScript</text></g>
+<g class="j" style="animation-delay:0.32s"><rect x="361.2" y="71" width="74" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="367.2" y="76" width="16" height="16" rx="3" fill="#E34F26"/><text x="375.2" y="87.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">5</text><text x="391.2" y="88.5" class="soft" font-size="12.5">HTML5</text></g>
+<g class="j" style="animation-delay:0.38s"><rect x="444.7" y="71" width="59" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="450.7" y="76" width="16" height="16" rx="3" fill="#1572B6"/><text x="458.7" y="87.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">3</text><text x="474.7" y="88.5" class="soft" font-size="12.5">CSS</text></g>
+<line x1="48" y1="108" x2="860" y2="108" stroke="#1d1d2c" stroke-dasharray="3 4"/>
+<circle cx="28" cy="130" r="6" fill="#0e0e17" stroke="#a397f7" stroke-width="2"/>
+<text x="48" y="135" class="fg" font-size="14" font-weight="700">Backend</text>
+<g class="j" style="animation-delay:0.44s"><rect x="180" y="117" width="66" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="186" y="122" width="16" height="16" rx="3" fill="#512BD4"/><text x="194" y="133.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">.N</text><text x="210" y="134.5" class="soft" font-size="12.5">.NET</text></g>
+<g class="j" style="animation-delay:0.50s"><rect x="256.4" y="117" width="123" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="262.4" y="122" width="16" height="16" rx="3" fill="#5C2D91"/><text x="270.4" y="133.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">AS</text><text x="286.4" y="134.5" class="soft" font-size="12.5">ASP.NET Core</text></g>
+<g class="j" style="animation-delay:0.56s"><rect x="389.59999999999997" y="117" width="123" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="395.59999999999997" y="122" width="16" height="16" rx="3" fill="#512BD4"/><text x="403.59999999999997" y="133.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">MA</text><text x="419.59999999999997" y="134.5" class="soft" font-size="12.5">Minimal APIs</text></g>
+<line x1="48" y1="154" x2="860" y2="154" stroke="#1d1d2c" stroke-dasharray="3 4"/>
+<circle cx="28" cy="176" r="6" fill="#0e0e17" stroke="#a397f7" stroke-width="2"/>
+<text x="48" y="181" class="fg" font-size="14" font-weight="700">Frontend</text>
+<g class="j" style="animation-delay:0.62s"><rect x="180" y="163" width="66" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="186" y="168" width="16" height="16" rx="3" fill="#E34F26"/><text x="194" y="179.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">5</text><text x="210" y="180.5" class="soft" font-size="12.5">HTML</text></g>
+<g class="j" style="animation-delay:0.68s"><rect x="256.4" y="163" width="59" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="262.4" y="168" width="16" height="16" rx="3" fill="#1572B6"/><text x="270.4" y="179.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">3</text><text x="286.4" y="180.5" class="soft" font-size="12.5">CSS</text></g>
+<line x1="48" y1="200" x2="860" y2="200" stroke="#1d1d2c" stroke-dasharray="3 4"/>
+<circle cx="28" cy="222" r="6" fill="#0e0e17" stroke="#a397f7" stroke-width="2"/>
+<text x="48" y="227" class="fg" font-size="14" font-weight="700">Datos</text>
+<g class="j" style="animation-delay:0.74s"><rect x="180" y="209" width="187" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="186" y="214" width="16" height="16" rx="3" fill="#68217A"/><text x="194" y="225.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">EF</text><text x="210" y="226.5" class="soft" font-size="12.5">Entity Framework Core</text></g>
+<g class="j" style="animation-delay:0.80s"><rect x="377.1" y="209" width="109" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="383.1" y="214" width="16" height="16" rx="3" fill="#CC2927"/><text x="391.1" y="225.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">SQ</text><text x="407.1" y="226.5" class="soft" font-size="12.5">SQL Server</text></g>
+<g class="j" style="animation-delay:0.86s"><rect x="496.1" y="209" width="74" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="502.1" y="214" width="16" height="16" rx="3" fill="#00758F"/><text x="510.1" y="225.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">My</text><text x="526.1" y="226.5" class="soft" font-size="12.5">MySQL</text></g>
+<line x1="48" y1="246" x2="860" y2="246" stroke="#1d1d2c" stroke-dasharray="3 4"/>
+<circle cx="28" cy="268" r="6" fill="#0e0e17" stroke="#a397f7" stroke-width="2"/>
+<text x="48" y="273" class="fg" font-size="14" font-weight="700">Testing</text>
+<g class="j" style="animation-delay:0.92s"><rect x="180" y="255" width="88" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="186" y="260" width="16" height="16" rx="3" fill="#85EA2D"/><text x="194" y="271.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#111">Sw</text><text x="210" y="272.5" class="soft" font-size="12.5">Swagger</text></g>
+<g class="j" style="animation-delay:0.98s"><rect x="277.7" y="255" width="88" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/><rect x="283.7" y="260" width="16" height="16" rx="3" fill="#FF6C37"/><text x="291.7" y="271.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">Po</text><text x="307.7" y="272.5" class="soft" font-size="12.5">Postman</text></g>
+</svg>
