@@ -2,13 +2,12 @@
 <p align="center">Desarrollador .NET · Mariano Roque Alonso, Paraguay 🇵🇾</p>
 
 <p align="center">
-  <img src="assets/lenguajes.svg?v=2" alt="Tecnologías: C#, .NET, JavaScript, HTML5, CSS3, MySQL, SQL Server, Swagger y Postman" width="760"/>
+  <img src="assets/lenguajes.svg?v=4" alt="Tecnologías: C#, .NET, JavaScript, HTML5, CSS3, MySQL, SQL Server, Swagger y Postman" width="760"/>
 </p>
 
 ## Sobre mí
 
 - Desarrollador .NET, construyo APIs con ASP.NET Core (Minimal APIs)
-- Rocket League: Champion 1 en 3v3 y 2v2
 
 ## Stack
 

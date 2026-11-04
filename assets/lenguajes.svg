@@ -1,47 +1,171 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 215" width="760" height="215" role="img" aria-label="Tecnologías representadas como autos de colores">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 336" width="760" height="336" role="img" aria-label="Tecnologías representadas como autos estilo Rocket League (Octane, Dominus y Fennec) haciendo acrobacias en un estadio">
   <style>
-    text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; text-anchor: middle; fill: #24292f; animation: fade .6s ease-out both; animation-delay: var(--d, 0s); }
-    @media (prefers-color-scheme: dark) { text { fill: #e6edf3; } }
+    text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; font-style: italic; letter-spacing: .4px; text-anchor: middle; fill: #e6edf3; }
+    .a { transform-box: view-box; transform-origin: var(--ox) var(--oy); }
+    .line { stroke: #fff; stroke-opacity: .22; stroke-width: 2; stroke-dasharray: 16 10; animation: road .45s linear infinite; }
+    .wheel { transform-box: fill-box; transform-origin: center; animation: spin .4s linear infinite; }
+    .flame { transform-box: fill-box; transform-origin: right center; animation: flicker .16s ease-in-out infinite alternate; }
+    .f2 { animation-duration: .11s; }
+    .spark { transform-box: fill-box; transform-origin: center; animation: spark .5s linear infinite; }
+    .s2 { animation-delay: .17s; } .s3 { animation-delay: .34s; }
+    .ball { transform-box: fill-box; transform-origin: center bottom; animation: ball 1.6s infinite; }
+    .ballspin { transform-box: fill-box; transform-origin: center; animation: spin 1.6s linear infinite; }
+    .orb { transform-box: fill-box; transform-origin: center; animation: orb 1.8s ease-in-out infinite alternate; }
+    .pad { animation: pad 1.8s ease-in-out infinite alternate; }
 
-    /* Entrada: el auto llega desde la izquierda */
-    .drive { animation: drive 1.3s cubic-bezier(.15,.7,.25,1) both; animation-delay: var(--d, 0s); }
-    /* Reposo: leve vaivén */
-    .bob   { animation: bob 1.8s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) + 1.3s); }
-    /* Ruedas giran mientras llega */
-    .wheel { transform-box: fill-box; transform-origin: center; animation: spin 1.3s cubic-bezier(.15,.7,.25,1) both; animation-delay: var(--d, 0s); }
-    /* Llama de boost parpadea */
-    .flame { transform-box: fill-box; transform-origin: right center; animation: flicker .22s ease-in-out infinite alternate; }
-
-    @keyframes drive   { from { transform: translateX(-140px); opacity: 0; } 30% { opacity: 1; } to { transform: translateX(0); opacity: 1; } }
-    @keyframes bob     { from { transform: translateY(0); } to { transform: translateY(-2.5px); } }
-    @keyframes spin    { from { transform: rotate(0); } to { transform: rotate(720deg); } }
-    @keyframes flicker { from { transform: scaleX(.7); opacity: .75; } to { transform: scaleX(1.35); opacity: 1; } }
-    @keyframes fade    { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes road { to { stroke-dashoffset: 26; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes flicker { from { transform: scaleX(.6); opacity: .75; } to { transform: scaleX(1.35); opacity: 1; } }
+    @keyframes spark { from { transform: translateX(0) scale(1); opacity: 1; } to { transform: translateX(-16px) scale(.2); opacity: 0; } }
+    @keyframes ball {
+      0%   { transform: translateY(0) scale(1.15,.82); animation-timing-function: cubic-bezier(.2,.7,.4,1); }
+      8%   { transform: translateY(-4px) scale(1,1); animation-timing-function: cubic-bezier(.2,.7,.4,1); }
+      50%  { transform: translateY(-62px); animation-timing-function: cubic-bezier(.6,0,.8,.3); }
+      96%  { transform: translateY(0) scale(1,1); }
+      100% { transform: translateY(0) scale(1.15,.82); }
+    }
+    @keyframes orb { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+    @keyframes pad { from { opacity: .45; } to { opacity: 1; } }
+    @keyframes jump { 0%, 28% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: cubic-bezier(.2,.8,.3,1); } 50% { transform: translate(0px,-42px) rotate(0deg) scale(1,1); animation-timing-function: cubic-bezier(.7,0,.9,.4); } 68% { transform: translate(0px,0px) rotate(0deg) scale(1.07,0.88); animation-timing-function: ease-out; } 78%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); } }
+    @keyframes sh-jump { 0%, 28% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: cubic-bezier(.2,.8,.3,1); } 50% { transform: translateX(0px) scale(0.47); opacity: 0.47; animation-timing-function: cubic-bezier(.7,0,.9,.4); } 68% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 78%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes frontflip { 0%, 22% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 40% { transform: translate(0px,-46px) rotate(180deg) scale(1,1); animation-timing-function: ease-in; } 58% { transform: translate(0px,0px) rotate(360deg) scale(1.05,0.9); animation-timing-function: ease-out; } 64%, 100% { transform: translate(0px,0px) rotate(360deg) scale(1,1); } }
+    @keyframes sh-frontflip { 0%, 22% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 40% { transform: translateX(0px) scale(0.43); opacity: 0.43; animation-timing-function: ease-in; } 58% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 64%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes dash { 0%, 18% { transform: translate(0px,0px) rotate(0deg) scale(1,1); opacity: 1; animation-timing-function: cubic-bezier(.1,.9,.2,1); } 32% { transform: translate(95px,0px) rotate(0deg) scale(1,1); opacity: 1; animation-timing-function: ease-in; } 38% { transform: translate(130px,0px) rotate(0deg) scale(1,1); opacity: 0; } 39% { transform: translate(-110px,0px) rotate(0deg) scale(1,1); opacity: 0; animation-timing-function: cubic-bezier(.1,.8,.3,1); } 62%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); opacity: 1; } }
+    @keyframes sh-dash { 0%, 18% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: cubic-bezier(.1,.9,.2,1); } 32% { transform: translateX(95px) scale(1.00); opacity: 1.00; animation-timing-function: ease-in; } 38% { transform: translateX(130px) scale(1.00); opacity: 0.00; } 39% { transform: translateX(-110px) scale(1.00); opacity: 0.00; animation-timing-function: cubic-bezier(.1,.8,.3,1); } 62%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes backflip { 0%, 22% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 40% { transform: translate(0px,-46px) rotate(-180deg) scale(1,1); animation-timing-function: ease-in; } 58% { transform: translate(0px,0px) rotate(-360deg) scale(1.05,0.9); animation-timing-function: ease-out; } 64%, 100% { transform: translate(0px,0px) rotate(-360deg) scale(1,1); } }
+    @keyframes sh-backflip { 0%, 22% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 40% { transform: translateX(0px) scale(0.43); opacity: 0.43; animation-timing-function: ease-in; } 58% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 64%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes wheelie { 0%, 18% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 32%, 58% { transform: translate(0px,0px) rotate(-24deg) scale(1,1); animation-timing-function: ease-in; } 70% { transform: translate(0px,0px) rotate(3deg) scale(1,1); } 78%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); } }
+    @keyframes sh-wheelie { 0%, 18% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 32%, 58% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-in; } 70% { transform: translateX(0px) scale(1.00); opacity: 1.00; } 78%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes doublejump { 0%, 14% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 28% { transform: translate(0px,-28px) rotate(0deg) scale(1,1); animation-timing-function: ease-in-out; } 36% { transform: translate(0px,-22px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 52% { transform: translate(0px,-60px) rotate(0deg) scale(1,1); animation-timing-function: cubic-bezier(.7,0,.9,.4); } 70% { transform: translate(0px,0px) rotate(0deg) scale(1.07,0.88); animation-timing-function: ease-out; } 78%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); } }
+    @keyframes sh-doublejump { 0%, 14% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 28% { transform: translateX(0px) scale(0.65); opacity: 0.65; animation-timing-function: ease-in-out; } 36% { transform: translateX(0px) scale(0.72); opacity: 0.72; animation-timing-function: ease-out; } 52% { transform: translateX(0px) scale(0.35); opacity: 0.35; animation-timing-function: cubic-bezier(.7,0,.9,.4); } 70% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 78%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes sideflip { 0%, 20% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 38% { transform: translate(0px,-46px) rotate(0deg) scale(1,-1); animation-timing-function: ease-in; } 56%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); } }
+    @keyframes sh-sideflip { 0%, 20% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 38% { transform: translateX(0px) scale(0.43); opacity: 0.43; animation-timing-function: ease-in; } 56%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes bumps { 0%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 15% { transform: translate(0px,-12px) rotate(0deg) scale(1,1); animation-timing-function: ease-in; } 30% { transform: translate(0px,0px) rotate(0deg) scale(1.04,0.93); animation-timing-function: ease-out; } 45% { transform: translate(0px,-12px) rotate(0deg) scale(1,1); animation-timing-function: ease-in; } 60% { transform: translate(0px,0px) rotate(0deg) scale(1.04,0.93); animation-timing-function: ease-out; } 70% { transform: translate(0px,0px) rotate(0deg) scale(1,1); } }
+    @keyframes sh-bumps { 0%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 15% { transform: translateX(0px) scale(0.85); opacity: 0.85; animation-timing-function: ease-in; } 30% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 45% { transform: translateX(0px) scale(0.85); opacity: 0.85; animation-timing-function: ease-in; } 60% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 70% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
+    @keyframes rock { 0%, 18% { transform: translate(0px,0px) rotate(0deg) scale(1,1); animation-timing-function: ease-out; } 36% { transform: translate(0px,-28px) rotate(-16deg) scale(1,1); animation-timing-function: ease-in-out; } 54% { transform: translate(0px,-32px) rotate(14deg) scale(1,1); animation-timing-function: ease-in; } 72%, 100% { transform: translate(0px,0px) rotate(0deg) scale(1,1); } }
+    @keyframes sh-rock { 0%, 18% { transform: translateX(0px) scale(1.00); opacity: 1.00; animation-timing-function: ease-out; } 36% { transform: translateX(0px) scale(0.65); opacity: 0.65; animation-timing-function: ease-in-out; } 54% { transform: translateX(0px) scale(0.60); opacity: 0.60; animation-timing-function: ease-in; } 72%, 100% { transform: translateX(0px) scale(1.00); opacity: 1.00; } }
 
     @media (prefers-reduced-motion: reduce) {
-      .drive, .bob, .wheel, .flame, text { animation: none; }
+      *, .a, ellipse { animation: none !important; }
     }
   </style>
+
   <defs>
-    <g id="car">
-      <path class="flame" d="M6 31 L-9 34 L6 37 Z" fill="#FF7A1A"/>
-      <path d="M6 38 L6 28 Q6 24 12 23 L34 20 L46 8 Q48 6 52 6 L84 6 Q88 6 90 8 L102 20 L112 23 Q118 24 118 29 L118 38 Z" fill="currentColor"/>
-      <path d="M47 19 L55 11 L82 11 L91 19 Z" fill="#fff" opacity=".85"/>
-      <g class="wheel"><circle cx="30" cy="38" r="10" fill="#1b1b1b"/><circle cx="30" cy="38" r="4" fill="#cfd4da"/><circle cx="30" cy="33" r="1.6" fill="#555"/></g>
-      <g class="wheel"><circle cx="92" cy="38" r="10" fill="#1b1b1b"/><circle cx="92" cy="38" r="4" fill="#cfd4da"/><circle cx="92" cy="33" r="1.6" fill="#555"/></g>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1022"/><stop offset="1" stop-color="#121a33"/></linearGradient>
+    <radialGradient id="blue" cx="0" cy="0" r="1"><stop offset="0" stop-color="#2d7cff" stop-opacity=".35"/><stop offset="1" stop-color="#2d7cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="orange" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".3"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fc4ff"/><stop offset=".45" stop-color="#9fc4ff" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity=".5"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="ballg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#f4f6f8"/><stop offset="1" stop-color="#8f99a5"/></radialGradient>
+    <radialGradient id="orbg" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff1c2"/><stop offset=".5" stop-color="#ffa23a"/><stop offset="1" stop-color="#ff6a00"/></radialGradient>
+    <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse"><path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M14 32.33V48.5" fill="none" stroke="#fff" stroke-opacity=".05"/></pattern>
+    <clipPath id="panel"><rect width="760" height="336" rx="16"/></clipPath>
+    
+    <clipPath id="clip-octane"><path d="M6 52L4 36Q4 30 10 29L30 27L40 14Q42 11 46 11L70 11Q74 11 77 14L88 26L108 30Q118 32 120 40L121 48Q121 52 116 52L112 52L111 47A15 15 0 0 0 81 47L80 52L42 52L41 47A15 15 0 0 0 11 47L10 52Z"/></clipPath>
+    <g id="octane">
+      <g transform="translate(4 40)"><path class="flame" d="M0 -4Q-9 -5 -24 0Q-9 5 0 4Z" fill="#ff7a1a"/><path class="flame f2" d="M0 -2.2Q-5 -2.4 -13 0Q-5 2.4 0 2.2Z" fill="#ffe7a3"/><circle class="spark" cx="-16" cy="0" r="2" fill="#ffb347"/><circle class="spark s2" cx="-16" cy="-2" r="1.6" fill="#ffd27a"/><circle class="spark s3" cx="-16" cy="2" r="1.4" fill="#ff8c2a"/></g>
+      <path d="M6 52L4 36Q4 30 10 29L30 27L40 14Q42 11 46 11L70 11Q74 11 77 14L88 26L108 30Q118 32 120 40L121 48Q121 52 116 52L112 52L111 47A15 15 0 0 0 81 47L80 52L42 52L41 47A15 15 0 0 0 11 47L10 52Z" fill="currentColor"/>
+      <g clip-path="url(#clip-octane)">
+        <rect x="0" y="0" width="140" height="31" fill="#fff" opacity=".14"/>
+        <rect x="0" y="41" width="140" height="15" fill="#000" opacity=".28"/>
+      </g>
+      <path d="M43 25L49 15L69 15Q72 15 74 17L84 25Z" fill="#16202c"/>
+      <path d="M43 25L49 15L69 15Q72 15 74 17L84 25Z" fill="url(#glass)" opacity=".55"/>
+      <rect x="59" y="15" width="3" height="10" fill="currentColor"/>
+      <path d="M1 19L25 16.5L25 19.5L2 22.5Z" fill="#1f2328"/><rect x="9" y="21" width="3" height="8" fill="#1f2328"/><rect x="18" y="20" width="3" height="8" fill="#1f2328"/><path d="M100 52L122 52L122 54.5L100 54.5Z" fill="#111"/><path d="M50 30L58 30L51 44L43 44Z" fill="#fff" opacity=".28"/>
+      <path d="M112 33L120 36L119.5 39L111 36Z" fill="#fff6c9"/>
+      <rect x="4" y="31" width="3" height="5" rx="1" fill="#ff2d2d"/>
+      <circle cx="26" cy="47" r="15" fill="#0b0d10"/><circle cx="96" cy="47" r="15" fill="#0b0d10"/>
+      <g class="wheel"><circle cx="26" cy="47" r="13" fill="#141619"/><circle cx="26" cy="47" r="11.6" fill="none" stroke="#2b3036" stroke-width="1.6" stroke-dasharray="2.2 1.6"/><circle cx="26" cy="47" r="7.6" fill="#aeb6bf"/><path d="M26 47L26.00 40.40 M26 47L32.28 44.96 M26 47L29.88 52.34 M26 47L22.12 52.34 M26 47L19.72 44.96" stroke="#5b636c" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="47" r="2" fill="#2b3036"/></g><g class="wheel"><circle cx="96" cy="47" r="13" fill="#141619"/><circle cx="96" cy="47" r="11.6" fill="none" stroke="#2b3036" stroke-width="1.6" stroke-dasharray="2.2 1.6"/><circle cx="96" cy="47" r="7.6" fill="#aeb6bf"/><path d="M96 47L96.00 40.40 M96 47L102.28 44.96 M96 47L99.88 52.34 M96 47L92.12 52.34 M96 47L89.72 44.96" stroke="#5b636c" stroke-width="2" stroke-linecap="round"/><circle cx="96" cy="47" r="2" fill="#2b3036"/></g>
+    </g>
+    <clipPath id="clip-dominus"><path d="M4 52L3 36Q3 32 8 31L20 30L22 27L27 28L48 18Q51 16 55 16L74 16Q78 16 81 18L94 27L120 32Q130 34 131 41L131 48Q131 52 126 52L119 52L119 47A15 15 0 0 0 89 47L88 52L43 52L43 47A15 15 0 0 0 13 47L12 52Z"/></clipPath>
+    <g id="dominus">
+      <g transform="translate(3 42)"><path class="flame" d="M0 -4Q-9 -5 -24 0Q-9 5 0 4Z" fill="#ff7a1a"/><path class="flame f2" d="M0 -2.2Q-5 -2.4 -13 0Q-5 2.4 0 2.2Z" fill="#ffe7a3"/><circle class="spark" cx="-16" cy="0" r="2" fill="#ffb347"/><circle class="spark s2" cx="-16" cy="-2" r="1.6" fill="#ffd27a"/><circle class="spark s3" cx="-16" cy="2" r="1.4" fill="#ff8c2a"/></g>
+      <path d="M4 52L3 36Q3 32 8 31L20 30L22 27L27 28L48 18Q51 16 55 16L74 16Q78 16 81 18L94 27L120 32Q130 34 131 41L131 48Q131 52 126 52L119 52L119 47A15 15 0 0 0 89 47L88 52L43 52L43 47A15 15 0 0 0 13 47L12 52Z" fill="currentColor"/>
+      <g clip-path="url(#clip-dominus)">
+        <rect x="0" y="0" width="140" height="31" fill="#fff" opacity=".14"/>
+        <rect x="0" y="41" width="140" height="15" fill="#000" opacity=".28"/>
+      </g>
+      <path d="M51 27L56 19L74 19Q77 19 79 21L88 27Z" fill="#16202c"/>
+      <path d="M51 27L56 19L74 19Q77 19 79 21L88 27Z" fill="url(#glass)" opacity=".55"/>
+      <rect x="66" y="19" width="3" height="8" fill="currentColor"/>
+      <path d="M100 31L109 32.6M101 33.6L107 34.6" stroke="#000" stroke-opacity=".35" stroke-width="1.4" stroke-linecap="round"/><path d="M108 52L132 52L132 54.5L108 54.5Z" fill="#111"/><path d="M46 36L86 33L86 35.5L46 38.5Z" fill="#fff" opacity=".3"/>
+      <path d="M122 35L130 38L129.5 40.5L121 37.5Z" fill="#fff6c9"/>
+      <rect x="3" y="33" width="3" height="5" rx="1" fill="#ff2d2d"/>
+      <circle cx="28" cy="47" r="15" fill="#0b0d10"/><circle cx="104" cy="47" r="15" fill="#0b0d10"/>
+      <g class="wheel"><circle cx="28" cy="47" r="13" fill="#141619"/><circle cx="28" cy="47" r="11.6" fill="none" stroke="#2b3036" stroke-width="1.6" stroke-dasharray="2.2 1.6"/><circle cx="28" cy="47" r="7.6" fill="#aeb6bf"/><path d="M28 47L28.00 40.40 M28 47L34.28 44.96 M28 47L31.88 52.34 M28 47L24.12 52.34 M28 47L21.72 44.96" stroke="#5b636c" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="47" r="2" fill="#2b3036"/></g><g class="wheel"><circle cx="104" cy="47" r="13" fill="#141619"/><circle cx="104" cy="47" r="11.6" fill="none" stroke="#2b3036" stroke-width="1.6" stroke-dasharray="2.2 1.6"/><circle cx="104" cy="47" r="7.6" fill="#aeb6bf"/><path d="M104 47L104.00 40.40 M104 47L110.28 44.96 M104 47L107.88 52.34 M104 47L100.12 52.34 M104 47L97.72 44.96" stroke="#5b636c" stroke-width="2" stroke-linecap="round"/><circle cx="104" cy="47" r="2" fill="#2b3036"/></g>
+    </g>
+    <clipPath id="clip-fennec"><path d="M4 52L4 17Q4 12 9 12L21 10L25 9Q27 8 30 8L68 8Q72 8 74 10L88 25L112 28Q120 29 120 36L120 48Q120 52 116 52L112 52L111 47L107 33L85 33L81 47L80 52L41 52L41 47L37 33L15 33L11 47L10 52Z"/></clipPath>
+    <g id="fennec">
+      <g transform="translate(4 42)"><path class="flame" d="M0 -4Q-9 -5 -24 0Q-9 5 0 4Z" fill="#ff7a1a"/><path class="flame f2" d="M0 -2.2Q-5 -2.4 -13 0Q-5 2.4 0 2.2Z" fill="#ffe7a3"/><circle class="spark" cx="-16" cy="0" r="2" fill="#ffb347"/><circle class="spark s2" cx="-16" cy="-2" r="1.6" fill="#ffd27a"/><circle class="spark s3" cx="-16" cy="2" r="1.4" fill="#ff8c2a"/></g>
+      <path d="M4 52L4 17Q4 12 9 12L21 10L25 9Q27 8 30 8L68 8Q72 8 74 10L88 25L112 28Q120 29 120 36L120 48Q120 52 116 52L112 52L111 47L107 33L85 33L81 47L80 52L41 52L41 47L37 33L15 33L11 47L10 52Z" fill="currentColor"/>
+      <g clip-path="url(#clip-fennec)">
+        <rect x="0" y="0" width="140" height="31" fill="#fff" opacity=".14"/>
+        <rect x="0" y="41" width="140" height="15" fill="#000" opacity=".28"/>
+      </g>
+      <path d="M27 22L30 11.5L67 11.5Q70 11.5 72 13.5L81.5 22Z" fill="#16202c"/>
+      <path d="M27 22L30 11.5L67 11.5Q70 11.5 72 13.5L81.5 22Z" fill="url(#glass)" opacity=".55"/>
+      <rect x="50" y="11.5" width="3" height="10.5" fill="currentColor"/>
+      <path d="M2 9L27 6.5L27 9.5L4 12Z" fill="#1f2328"/><path d="M98 52L121 52L121 54.5L98 54.5Z" fill="#111"/><path d="M44 27L76 27L76 29.5L44 29.5Z" fill="#fff" opacity=".3"/>
+      <path d="M112 31L120 33L120 36.5L111 34.5Z" fill="#fff6c9"/>
+      <rect x="4" y="22" width="3" height="5" rx="1" fill="#ff2d2d"/>
+      <path d="M11 52L11 47L15 33L37 33L41 47L41 52Z" fill="#0b0d10"/><path d="M81 52L81 47L85 33L107 33L111 47L111 52Z" fill="#0b0d10"/>
+      <g class="wheel"><circle cx="26" cy="47" r="13" fill="#141619"/><circle cx="26" cy="47" r="11.6" fill="none" stroke="#2b3036" stroke-width="1.6" stroke-dasharray="2.2 1.6"/><circle cx="26" cy="47" r="7.6" fill="#aeb6bf"/><path d="M26 47L26.00 40.40 M26 47L32.28 44.96 M26 47L29.88 52.34 M26 47L22.12 52.34 M26 47L19.72 44.96" stroke="#5b636c" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="47" r="2" fill="#2b3036"/></g><g class="wheel"><circle cx="96" cy="47" r="13" fill="#141619"/><circle cx="96" cy="47" r="11.6" fill="none" stroke="#2b3036" stroke-width="1.6" stroke-dasharray="2.2 1.6"/><circle cx="96" cy="47" r="7.6" fill="#aeb6bf"/><path d="M96 47L96.00 40.40 M96 47L102.28 44.96 M96 47L99.88 52.34 M96 47L92.12 52.34 M96 47L89.72 44.96" stroke="#5b636c" stroke-width="2" stroke-linecap="round"/><circle cx="96" cy="47" r="2" fill="#2b3036"/></g>
     </g>
   </defs>
 
-  <!-- Fila 1 -->
-  <g class="drive" style="--d:0s"><g class="bob"><use href="#car" x="20"  y="15" color="#9B4F96"/></g></g><text x="80"  y="82" style="--d:.5s">C#</text>
-  <g class="drive" style="--d:.15s"><g class="bob"><use href="#car" x="168" y="15" color="#512BD4"/></g></g><text x="228" y="82" style="--d:.65s">.NET</text>
-  <g class="drive" style="--d:.3s"><g class="bob"><use href="#car" x="316" y="15" color="#F7DF1E"/></g></g><text x="376" y="82" style="--d:.8s">JavaScript</text>
-  <g class="drive" style="--d:.45s"><g class="bob"><use href="#car" x="464" y="15" color="#E34F26"/></g></g><text x="524" y="82" style="--d:.95s">HTML5</text>
-  <g class="drive" style="--d:.6s"><g class="bob"><use href="#car" x="612" y="15" color="#1572B6"/></g></g><text x="672" y="82" style="--d:1.1s">CSS3</text>
+  <g clip-path="url(#panel)">
+    <!-- Estadio -->
+    <rect width="760" height="336" fill="url(#bg)"/>
+    <rect width="760" height="336" fill="url(#hex)"/>
+    <rect width="760" height="336" fill="url(#blue)"/>
+    <rect width="760" height="336" fill="url(#orange)"/>
+    <line class="line" x1="0" y1="147" x2="760" y2="147"/>
+    <line class="line" x1="0" y1="293" x2="760" y2="293"/>
 
-  <!-- Fila 2 -->
-  <g class="drive" style="--d:.75s"><g class="bob"><use href="#car" x="94"  y="115" color="#00758F"/></g></g><text x="154" y="182" style="--d:1.25s">MySQL</text>
-  <g class="drive" style="--d:.9s"><g class="bob"><use href="#car" x="242" y="115" color="#CC2927"/></g></g><text x="302" y="182" style="--d:1.4s">SQL Server</text>
-  <g class="drive" style="--d:1.05s"><g class="bob"><use href="#car" x="390" y="115" color="#85EA2D"/></g></g><text x="450" y="182" style="--d:1.55s">Swagger</text>
-  <g class="drive" style="--d:1.2s"><g class="bob"><use href="#car" x="538" y="115" color="#FF6C37"/></g></g><text x="598" y="182" style="--d:1.7s">Postman</text>
+    <!-- Pad de boost grande -->
+    <g transform="translate(58 292)">
+      <ellipse class="pad" cx="0" cy="0" rx="22" ry="5" fill="#ff7a1a" opacity=".8"/>
+      <ellipse cx="0" cy="0" rx="14" ry="3" fill="#ffd27a"/>
+      <circle class="orb" cx="0" cy="-22" r="9" fill="url(#orbg)"/>
+    </g>
+
+    <!-- Pelota -->
+    <ellipse cx="712" cy="293" rx="14" ry="3.5" fill="#000" opacity=".45"/>
+    <g class="ball">
+      <g class="ballspin">
+        <circle cx="712" cy="276" r="16" fill="url(#ballg)" stroke="#5d6672" stroke-width="1.2"/>
+        <path d="M712 270l5.2 3v6l-5.2 3l-5.2 -3v-6z M712 270v-10 M717.2 273l8.6 -5 M717.2 279l8.6 5 M712 282v10 M706.8 279l-8.6 5 M706.8 273l-8.6 -5"
+              fill="#c7ced6" stroke="#5d6672" stroke-width="1.1" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <!-- Autos -->
+  <ellipse cx="80" cy="147" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-jump 3.2s 0.0s infinite"/>
+  <g class="a" style="--ox:80.0px; --oy:123.1px; animation: jump 3.2s 0.0s infinite"><use href="#octane" transform="translate(25.4 93.2) scale(0.88)" color="#9B4F96"/></g>
+  <text x="80" y="172">C#</text>
+  <ellipse cx="230" cy="147" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-frontflip 3.8s 0.4s infinite"/>
+  <g class="a" style="--ox:230.0px; --oy:123.1px; animation: frontflip 3.8s 0.4s infinite"><use href="#dominus" transform="translate(171.0 93.2) scale(0.88)" color="#512BD4"/></g>
+  <text x="230" y="172">.NET</text>
+  <ellipse cx="380" cy="147" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-dash 4.2s 0.8s infinite"/>
+  <g class="a" style="--ox:380.0px; --oy:123.1px; animation: dash 4.2s 0.8s infinite"><use href="#fennec" transform="translate(325.4 93.2) scale(0.88)" color="#F7DF1E"/></g>
+  <text x="380" y="172">JavaScript</text>
+  <ellipse cx="530" cy="147" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-backflip 3.6s 1.2s infinite"/>
+  <g class="a" style="--ox:530.0px; --oy:123.1px; animation: backflip 3.6s 1.2s infinite"><use href="#octane" transform="translate(475.4 93.2) scale(0.88)" color="#E34F26"/></g>
+  <text x="530" y="172">HTML5</text>
+  <ellipse cx="680" cy="147" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-wheelie 3.6s 1.6s infinite"/>
+  <g class="a" style="--ox:645.7px; --oy:146.0px; animation: wheelie 3.6s 1.6s infinite"><use href="#dominus" transform="translate(621.0 93.2) scale(0.88)" color="#1572B6"/></g>
+  <text x="680" y="172">CSS3</text>
+  <ellipse cx="165" cy="293" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-doublejump 3.4s 0.2s infinite"/>
+  <g class="a" style="--ox:165.0px; --oy:269.1px; animation: doublejump 3.4s 0.2s infinite"><use href="#fennec" transform="translate(110.4 239.2) scale(0.88)" color="#00758F"/></g>
+  <text x="165" y="318">MySQL</text>
+  <ellipse cx="315" cy="293" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-sideflip 4.2s 0.6s infinite"/>
+  <g class="a" style="--ox:315.0px; --oy:269.1px; animation: sideflip 4.2s 0.6s infinite"><use href="#octane" transform="translate(260.4 239.2) scale(0.88)" color="#CC2927"/></g>
+  <text x="315" y="318">SQL Server</text>
+  <ellipse cx="465" cy="293" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-bumps 2.4s 1.0s infinite"/>
+  <g class="a" style="--ox:465.0px; --oy:269.1px; animation: bumps 2.4s 1.0s infinite"><use href="#dominus" transform="translate(406.0 239.2) scale(0.88)" color="#85EA2D"/></g>
+  <text x="465" y="318">Swagger</text>
+  <ellipse cx="615" cy="293" rx="51" ry="4" fill="#000" opacity=".35" style="transform-box: fill-box; transform-origin: center; animation: sh-rock 3.0s 1.4s infinite"/>
+  <g class="a" style="--ox:615.0px; --oy:269.1px; animation: rock 3.0s 1.4s infinite"><use href="#fennec" transform="translate(560.4 239.2) scale(0.88)" color="#FF6C37"/></g>
+  <text x="615" y="318">Postman</text>
+  </g>
 </svg>
