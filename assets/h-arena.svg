@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="50" viewBox="0 0 880 50" role="img" aria-labelledby="t">
+<title id="t">Free play — Garage</title>
+<style>
+  text { font-family: Bahnschrift, 'DIN Alternate', 'Arial Narrow', 'Segoe UI', Arial, sans-serif; font-style: italic; }
+  :where(text:not([fill])) { fill: #ffffff; }
+  :where(text:not([font-size])) { font-size: 13px; }
+  :where(text:not([font-weight])) { font-weight: 700; }
+  .in { animation: slide .45s cubic-bezier(.2,.8,.3,1) backwards; }
+  .fade { animation: fade .4s ease-out backwards; }
+  @keyframes slide { from { transform: translateX(-26px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .ring { stroke-dashoffset: 0 !important; } }
+</style>
+<defs>
+  <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1838"/><stop offset="1" stop-color="#070d22"/></linearGradient>
+  <radialGradient id="gb" cx="0" cy="0" r="1"><stop offset="0" stop-color="#1f8fff" stop-opacity=".35"/><stop offset="1" stop-color="#1f8fff" stop-opacity="0"/></radialGradient>
+  <radialGradient id="go" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".3"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
+  <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse"><path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M14 32.33V48.5" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+</defs>
+<polygon points="-16,6 190,6 206,44 0,44" fill="#ff7a1a"/>
+<text x="22" y="32" font-size="18" font-weight="900" letter-spacing="1">FREE PLAY</text>
+<text x="206" y="32" font-size="14" font-weight="600" fill="#c7d3f2">Garage · cada tecnología con su auto</text>
+<polygon points="734,21 790,21 786,29 730,29" fill="#1f8fff"/><polygon points="800,21 856,21 852,29 796,29" fill="#ff7a1a"/>
+</svg>

@@ -1,4 +1,4 @@
-"""Genera los SVG del perfil con estética de API: hero, botones de contacto, stack y cabecera del garage.
+"""Genera los SVG del perfil con estética de HUD/menú de Rocket League.
 
 Uso: python assets/generar_perfil.py   (escribe los archivos en assets/)
 """
@@ -9,176 +9,193 @@ OUT = Path(__file__).resolve().parent
 
 # ------------------------------------------------------------------ datos
 USUARIO = "HerSamm"
-ROL = "Desarrollador .NET"
+TITULO = "Desarrollador .NET"
+SUBTITULO = "C# · .NET · ASP.NET Core Minimal APIs"
 UBICACION = "Mariano Roque Alonso, Paraguay"
-ROLES_ROTATIVOS = ["Desarrollador .NET", "APIs con ASP.NET Core", "Minimal APIs + EF Core"]
 EMAIL = "samulopez424@gmail.com"
 LINKEDIN = "in/hermes-lópez-5b46b32a9"
 
-JSON = [  # (sangría, [(clase, texto), ...])
-    (0, [("p", "{")]),
-    (1, [("k", '"usuario"'), ("p", ": "), ("s", f'"{USUARIO}"'), ("p", ",")]),
-    (1, [("k", '"rol"'), ("p", ": "), ("s", f'"{ROL}"'), ("p", ",")]),
-    (1, [("k", '"ubicacion"'), ("p", ": "), ("s", '"Mariano Roque Alonso, PY"'), ("p", ",")]),
-    (1, [("k", '"enfoque"'), ("p", ": "), ("s", '"ASP.NET Core Minimal APIs"'), ("p", ",")]),
-    (1, [("k", '"datos"'), ("p", ": ["), ("s", '"EF Core"'), ("p", ", "), ("s", '"SQL Server"'), ("p", ", "), ("s", '"MySQL"'), ("p", "]")]),
-    (0, [("p", "}")]),
-]
-
-STACK = [  # (categoría, [(nombre, color, sigla, color de sigla)])
-    ("Lenguajes", [("C#", "#9B4F96", "C#", "#fff"), ("JavaScript", "#F7DF1E", "JS", "#111"),
-                   ("HTML5", "#E34F26", "5", "#fff"), ("CSS", "#1572B6", "3", "#fff")]),
-    ("Backend", [(".NET", "#512BD4", ".N", "#fff"), ("ASP.NET Core", "#5C2D91", "AS", "#fff"),
-                 ("Minimal APIs", "#512BD4", "MA", "#fff")]),
-    ("Frontend", [("HTML", "#E34F26", "5", "#fff"), ("CSS", "#1572B6", "3", "#fff")]),
-    ("Datos", [("Entity Framework Core", "#68217A", "EF", "#fff"), ("SQL Server", "#CC2927", "SQ", "#fff"),
-               ("MySQL", "#00758F", "My", "#fff")]),
-    ("Testing", [("Swagger", "#85EA2D", "Sw", "#111"), ("Postman", "#FF6C37", "Po", "#fff")]),
+# Loadout: (ranura del garage, categoría real, [(tecnología, color)])
+LOADOUT = [
+    ("Cuerpo",           "Lenguajes", [("C#", "#9B4F96"), ("JavaScript", "#F7DF1E"), ("HTML5", "#E34F26"), ("CSS", "#1572B6")]),
+    ("Boost",            "Backend",   [(".NET", "#512BD4"), ("ASP.NET Core", "#7B4FD8"), ("Minimal APIs", "#512BD4")]),
+    ("Calcomanía",       "Frontend",  [("HTML", "#E34F26"), ("CSS", "#1572B6")]),
+    ("Ruedas",           "Datos",     [("Entity Framework Core", "#8E44AD"), ("SQL Server", "#CC2927"), ("MySQL", "#00758F")]),
+    ("Explosión de gol", "Testing",   [("Swagger", "#85EA2D"), ("Postman", "#FF6C37")]),
 ]
 
 # ----------------------------------------------------------------- estilo
 W = 880
-BASE_CSS = """
-  text { font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; }
-  :where(text:not([fill])) { fill: #9a9ab0; }
-  :where(text:not([font-size])) { font-size: 13px; }
-  .mono { font-family: Consolas, Menlo, 'Fira Code', 'Courier New', monospace; }
-  .fg { fill: #e6e6f0; } .soft { fill: #c9c9d9; } .brand { fill: #a397f7; } .ok { fill: #10b981; } .cyan { fill: #00b4d8; }
-  .k { fill: #a397f7; } .s { fill: #34d399; } .p { fill: #8b8ba3; }
-  .j { animation: show .3s ease-out backwards; }
-  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+BLUE, ORANGE = "#1f8fff", "#ff7a1a"
+CSS = f"""
+  text {{ font-family: Bahnschrift, 'DIN Alternate', 'Arial Narrow', 'Segoe UI', Arial, sans-serif; font-style: italic; }}
+  :where(text:not([fill])) {{ fill: #ffffff; }}
+  :where(text:not([font-size])) {{ font-size: 13px; }}
+  :where(text:not([font-weight])) {{ font-weight: 700; }}
+  .in {{ animation: slide .45s cubic-bezier(.2,.8,.3,1) backwards; }}
+  .fade {{ animation: fade .4s ease-out backwards; }}
+  @keyframes slide {{ from {{ transform: translateX(-26px); opacity: 0; }} to {{ transform: none; opacity: 1; }} }}
+  @keyframes fade {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
+  @media (prefers-reduced-motion: reduce) {{ * {{ animation: none !important; }} .ring {{ stroke-dashoffset: 0 !important; }} }}
 """
 
-def svg(w, h, title, body, css=""):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="t">\n'
-            f'<title id="t">{escape(title)}</title>\n<style>{BASE_CSS}{css}</style>\n{body}\n</svg>\n')
+DEFS = f"""
+  <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1838"/><stop offset="1" stop-color="#070d22"/></linearGradient>
+  <radialGradient id="gb" cx="0" cy="0" r="1"><stop offset="0" stop-color="{BLUE}" stop-opacity=".35"/><stop offset="1" stop-color="{BLUE}" stop-opacity="0"/></radialGradient>
+  <radialGradient id="go" cx="1" cy="1" r="1"><stop offset="0" stop-color="{ORANGE}" stop-opacity=".3"/><stop offset="1" stop-color="{ORANGE}" stop-opacity="0"/></radialGradient>
+  <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse"><path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M14 32.33V48.5" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+"""
 
-def header_bar(path, titulo, y=0):
-    """Barra 'GET /ruta  Título ----- 200 OK'."""
-    tx = 68 + len(path) * 7.8 + 16
-    return f'''<g transform="translate(0 {y})">
-  <rect x=".5" y=".5" width="{W-1}" height="47" rx="10" fill="#0f1a22" stroke="#1e4a55"/>
-  <rect x="16" y="14" width="40" height="20" rx="4" fill="#00b4d8"/>
-  <text x="36" y="28" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#06222b">GET</text>
-  <text x="68" y="29" class="mono fg" font-size="13">{escape(path)}</text>
-  <text x="{tx:.0f}" y="29" class="fg" font-size="15" font-weight="700">{escape(titulo)}</text>
-  <line x1="{tx + len(titulo) * 8.6 + 16:.0f}" y1="24" x2="{W-80}" y2="24" stroke="#2a3a44" stroke-dasharray="4 4"/>
-  <text x="{W-16}" y="29" text-anchor="end" class="mono ok" font-size="12">200 OK</text>
-</g>'''
+def svg(w, h, title, body, css="", defs=""):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="t">\n'
+            f'<title id="t">{escape(title)}</title>\n<style>{CSS}{css}</style>\n<defs>{DEFS}{defs}</defs>\n{body}\n</svg>\n')
+
+def para(x, y, w, h, k=10):
+    """Paralelogramo inclinado (la forma típica de los menús de RL)."""
+    return f"{x + k},{y} {x + w},{y} {x + w - k},{y + h} {x},{y + h}"
+
+def arena_bg(w, h, rx=14):
+    return (f'<clipPath id="c"><rect width="{w}" height="{h}" rx="{rx}"/></clipPath>'
+            f'<g clip-path="url(#c)"><rect width="{w}" height="{h}" fill="url(#navy)"/><rect width="{w}" height="{h}" fill="url(#hex)"/>'
+            f'<rect width="{w}" height="{h}" fill="url(#gb)"/><rect width="{w}" height="{h}" fill="url(#go)"/></g>'
+            f'<rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" rx="{rx}" fill="none" stroke="#24345f"/>')
+
+def tw(s, px=8.6):
+    return len(s) * px
 
 # ------------------------------------------------------------------- hero
 def hero():
     H = 262
-    lines = []
-    for i, (ind, toks) in enumerate(JSON):
-        spans = "".join(f'<tspan class="{c}">{escape(t)}</tspan>' for c, t in toks)
-        lines.append(f'<text x="{458 + ind * 18}" y="{108 + i * 19}" class="mono j" font-size="12.5" '
-                     f'style="animation-delay:{1.5 + i * .12:.2f}s" xml:space="preserve">{spans}</text>')
-    n = len(ROLES_ROTATIVOS)
-    cyc = 4 * n
-    roles = "".join(
-        f'<text x="40" y="216" class="mono role" font-size="13" style="animation-delay:{i * 4 - (0 if i == 0 else 0)}s">{escape(r)}</text>'
-        for i, r in enumerate(ROLES_ROTATIVOS))
-    vis = 100 / n
+    cx, cy, r = 770, 150, 60
+    circ = 2 * 3.14159 * r
     css = f"""
-  .path {{ animation: type 1s steps(16) .3s backwards; }}
-  .pending {{ opacity: 0; animation: pending 1.5s linear; }}
-  .done {{ animation: show .3s ease-out 1.5s backwards; }}
-  .role {{ fill: #00b4d8; opacity: 0; animation: role {cyc}s linear infinite backwards; }}
-  .cursor {{ animation: blink 1.1s step-end infinite; }}
-  @keyframes type {{ from {{ clip-path: inset(0 100% 0 0); }} to {{ clip-path: inset(0 0 0 0); }} }}
-  @keyframes pending {{ from, to {{ opacity: 1; }} }}
-  @keyframes role {{ 0% {{ opacity: 0; }} 2% {{ opacity: 1; }} {vis - 2:.1f}% {{ opacity: 1; }} {vis:.1f}%, 100% {{ opacity: 0; }} }}
+  .flash {{ opacity: 0; animation: flash .55s ease-out; transform-box: fill-box; transform-origin: center; }}
+  .ring {{ stroke-dasharray: {circ:.1f}; stroke-dashoffset: {circ:.1f}; animation: fill 1.4s cubic-bezier(.3,.6,.3,1) 2.3s forwards; }}
+  .pulse {{ animation: pulse 1.6s ease-in-out 3.7s infinite alternate; }}
+  @keyframes flash {{ 0% {{ opacity: 0; transform: scale(1.8); }} 25% {{ opacity: 1; transform: scale(1); }} 80% {{ opacity: 1; }} 100% {{ opacity: 0; transform: scale(.9); }} }}
+  @keyframes fill {{ to {{ stroke-dashoffset: 0; }} }}
+  @keyframes pulse {{ from {{ opacity: .35; }} to {{ opacity: .9; }} }}
 """
-    body = f'''<defs>
-  <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#a397f7" stroke-opacity=".06"/></pattern>
-  <radialGradient id="glow" cx=".15" cy=".3" r=".6"><stop offset="0" stop-color="#5b3fd6" stop-opacity=".28"/><stop offset="1" stop-color="#5b3fd6" stop-opacity="0"/></radialGradient>
-</defs>
-<rect x=".5" y=".5" width="{W-1}" height="{H-1}" rx="12" fill="#0e0e17" stroke="#26263a"/>
-<rect x="1" y="35" width="{W-2}" height="{H-36}" fill="url(#grid)"/>
-<rect x="1" y="35" width="{W-2}" height="{H-36}" fill="url(#glow)"/>
-<line x1="1" y1="34.5" x2="{W-1}" y2="34.5" stroke="#26263a"/>
-<text x="18" y="22" class="mono" font-size="12"><tspan class="brand">{{ }}</tspan> <tspan class="fg" font-weight="700">{escape(USUARIO.lower())}</tspan><tspan class="p"> / API v1</tspan></text>
-<g class="pending"><circle cx="{W-96}" cy="18" r="4" fill="#f59e0b"/><text x="{W-86}" y="22" class="mono" font-size="12" fill="#f59e0b">pendiente…</text></g>
-<g class="done"><circle cx="{W-76}" cy="18" r="4" fill="#10b981"/><text x="{W-66}" y="22" class="mono ok" font-size="12">200 OK</text></g>
+    defs = f'<linearGradient id="boost" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="{ORANGE}"/></linearGradient>'
+    count = "".join(
+        f'<text class="flash" x="{cx}" y="{cy + 16}" text-anchor="middle" font-size="{46 if t != "GO!" else 40}" font-weight="900" '
+        f'fill="{"#ffffff" if t != "GO!" else ORANGE}" style="animation-delay:{.3 + i * .55:.2f}s">{t}</text>'
+        for i, t in enumerate(["3", "2", "1", "GO!"]))
+    ticks = "".join(
+        f'<line x1="{cx}" y1="{cy - r - 13}" x2="{cx}" y2="{cy - r - 8}" stroke="#4a5d8f" stroke-width="2" transform="rotate({a} {cx} {cy})"/>'
+        for a in range(0, 360, 30))
+    body = f'''{arena_bg(W, H)}
+<!-- Marcador -->
+<polygon points="{para(262, 0, 150, 38, -12)}" fill="{BLUE}"/>
+<polygon points="{para(404, 0, 72, 38, 0)}" fill="#0a1330" stroke="#24345f"/>
+<polygon points="{para(468, 0, 150, 38, 12)}" fill="{ORANGE}"/>
+<text x="292" y="25" font-size="14" font-weight="800">{escape(USUARIO.upper())}</text>
+<text x="392" y="27" text-anchor="end" font-size="20" font-weight="900">3</text>
+<text x="440" y="26" text-anchor="middle" font-size="18" font-weight="800">5:00</text>
+<text x="488" y="27" font-size="20" font-weight="900">0</text>
+<text x="590" y="25" text-anchor="end" font-size="14" font-weight="800">BUGS</text>
 
-<rect x="24" y="54" width="40" height="20" rx="4" fill="#00b4d8"/>
-<text x="44" y="68" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#06222b">GET</text>
-<text x="74" y="69" class="mono soft path" font-size="13">/api/v1/{escape(USUARIO.lower())}</text>
-<text x="22" y="124" class="fg" font-size="44" font-weight="700">{escape(USUARIO)}</text>
-<text x="24" y="154" class="soft" font-size="17" font-weight="600">{escape(ROL)} · C# / .NET</text>
-<path d="M30 168c-3.9 0-7 3-7 6.8 0 5 7 11.2 7 11.2s7-6.2 7-11.2c0-3.8-3.1-6.8-7-6.8zm0 9.4a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" fill="#00b4d8"/>
-<text x="44" y="182" class="soft" font-size="13">{escape(UBICACION)}</text>
-<text x="24" y="216" class="mono cyan" font-size="13">&gt;</text>
-{roles}
-<rect class="cursor" x="210" y="205" width="7" height="14" fill="#a397f7"/>
+<!-- Banner de jugador -->
+<g class="in" style="animation-delay:.2s">
+  <polygon points="{para(24, 62, 560, 176, 18)}" fill="#0c1a3f" fill-opacity=".9" stroke="#24345f"/>
+  <polygon points="{para(24, 62, 26, 176, 18)}" fill="{BLUE}"/>
+  <polygon points="{para(560, 62, 24, 10, 4)}" fill="{ORANGE}"/>
+</g>
+<g class="in" style="animation-delay:.45s">
+  <text x="69" y="133" font-size="58" font-weight="900" fill="{BLUE}" fill-opacity=".55">{escape(USUARIO.upper())}</text>
+  <text x="66" y="130" font-size="58" font-weight="900">{escape(USUARIO.upper())}</text>
+</g>
+<text class="in" x="66" y="164" font-size="20" font-weight="800" fill="{ORANGE}" style="animation-delay:.65s">{escape(TITULO.upper())}</text>
+<text class="in" x="64" y="192" font-size="14" font-weight="600" fill="#c7d3f2" style="animation-delay:.8s">{escape(SUBTITULO)}</text>
+<g class="in" style="animation-delay:.95s">
+  <path d="M68 206c-3.6 0-6.5 2.8-6.5 6.3 0 4.7 6.5 10.4 6.5 10.4s6.5-5.7 6.5-10.4c0-3.5-2.9-6.3-6.5-6.3zm0 8.7a2.4 2.4 0 1 1 0-4.8 2.4 2.4 0 0 1 0 4.8z" fill="{BLUE}"/>
+  <text x="80" y="219" font-size="13" font-weight="600" fill="#c7d3f2">{escape(UBICACION)}</text>
+</g>
 
-<rect x="440.5" y="52.5" width="415" height="187" rx="8" fill="#0a0a12" stroke="#26263a"/>
-<text x="456" y="72" font-size="11">Respuesta</text>
-<text x="840" y="72" text-anchor="end" class="mono" font-size="11"><tspan class="ok">200 OK</tspan><tspan class="p"> · application/json</tspan></text>
-<line x1="441" y1="82.5" x2="855" y2="82.5" stroke="#26263a"/>
-{"".join(lines)}
-<rect class="cursor" x="458" y="{108 + len(JSON) * 19 - 11}" width="7" height="14" fill="#a397f7"/>'''
-    title = f"GET /api/v1/{USUARIO.lower()} · 200 OK — {USUARIO}, {ROL} · C# / .NET · {UBICACION}"
-    return svg(W, H, title, body, css)
+<!-- Medidor de boost con cuenta regresiva de kickoff -->
+<circle class="pulse" cx="{cx}" cy="{cy}" r="{r + 18}" fill="{ORANGE}" fill-opacity=".12"/>
+{ticks}
+<circle cx="{cx}" cy="{cy}" r="{r}" fill="#081029" stroke="#1a2a55" stroke-width="12"/>
+<circle class="ring" cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="url(#boost)" stroke-width="12" stroke-linecap="round" transform="rotate(-90 {cx} {cy})"/>
+{count}
+<g class="fade" style="animation-delay:3.4s">
+  <text x="{cx}" y="{cy + 12}" text-anchor="middle" font-size="40" font-weight="900">100</text>
+  <text x="{cx}" y="{cy + 32}" text-anchor="middle" font-size="12" font-weight="800" fill="{ORANGE}" letter-spacing="2">BOOST</text>
+</g>'''
+    title = f"{USUARIO} — {TITULO} · {SUBTITULO} · {UBICACION}"
+    return svg(W, H, title, body, css, defs)
 
 # ---------------------------------------------------------------- botones
 ICONS = {
-    "linkedin": '<text x="34" y="38" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">in</text>',
-    "email": '<path d="M24 22h20a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H24a2 2 0 0 1-2-2V24a2 2 0 0 1 2-2zm0 2v.5l10 6.5 10-6.5V24H24zm20 3.2-10 6.4-10-6.4V38h20z" fill="#fff"/>',
+    "linkedin": '<text x="40" y="40" text-anchor="middle" font-size="18" font-weight="900" font-style="normal">in</text>',
+    "email": '<path d="M29 23h22a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H29a2 2 0 0 1-2-2V25a2 2 0 0 1 2-2zm0 2v.6l11 6.8 11-6.8V25H29zm22 3.3-11 6.7-11-6.7V39h22z" fill="#fff"/>',
 }
 
-def boton(icono, titulo, sub, flecha):
+def boton(icono, accion, titulo, sub, color):
     w, h = 440, 64
-    body = f'''<rect x="4.5" y="4.5" width="{w-9}" height="{h-9}" rx="10" fill="#13131f" stroke="#26263a"/>
-<rect x="16" y="13" width="36" height="36" rx="8" fill="#5b3fd6"/>
-<g transform="translate(0 -0)">{ICONS[icono]}</g>
-<text x="66" y="30" class="fg" font-size="15" font-weight="700">{escape(titulo)}</text>
-<text x="66" y="47" class="mono" font-size="11.5">{escape(sub)}</text>
-<text x="{w-24}" y="38" text-anchor="end" class="soft" font-size="18">{flecha}</text>'''
-    return svg(w, h, f"{titulo}: {sub}", body)
+    css = """
+  .shine { animation: shine 4s ease-in-out infinite; }
+  @keyframes shine { 0%, 70% { transform: translateX(-120px); } 100% { transform: translateX(560px); } }
+"""
+    defs = '<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
+    body = f'''<clipPath id="b"><polygon points="{para(6, 4, w - 12, h - 8, 14)}"/></clipPath>
+<polygon points="{para(6, 4, w - 12, h - 8, 14)}" fill="#0c1a3f" stroke="{color}" stroke-width="1.5"/>
+<g clip-path="url(#b)">
+  <polygon points="{para(6, 4, 66, h - 8, 14)}" fill="{color}"/>
+  <rect class="shine" x="0" y="0" width="80" height="{h}" fill="url(#sh)" transform="skewX(-20)"/>
+</g>
+{ICONS[icono]}
+<text x="84" y="25" font-size="10.5" font-weight="700" fill="{color}" letter-spacing="1.5">{escape(accion.upper())}</text>
+<text x="84" y="44" font-size="17" font-weight="900">{escape(titulo.upper())}</text>
+<text x="{84 + tw(titulo, 11.5) + 8:.0f}" y="44" font-size="12" font-weight="500" fill="#c7d3f2">{escape(sub)}</text>
+<polygon points="{w - 44},26 {w - 30},32 {w - 44},38" fill="{color}"/>'''
+    return svg(w, h, f"{titulo}: {sub}", body, css, defs)
 
-# ------------------------------------------------------------------ stack
-def stack():
-    row_h, top = 46, 64
-    H = top + len(STACK) * row_h + 14
-    parts = [header_bar("/stack", "Stack tecnológico"),
-             f'<rect x=".5" y="56.5" width="{W-1}" height="{H-57}" rx="10" fill="#0e0e17" stroke="#26263a"/>',
-             f'<line x1="28" y1="{top + 20}" x2="28" y2="{top + (len(STACK) - 1) * row_h + 20}" stroke="#5b3fd6" stroke-width="2"/>']
-    delay = .2
-    for r, (cat, items) in enumerate(STACK):
-        y = top + r * row_h
-        cy = y + 20
-        fill = "#10b981" if r == 0 else "#0e0e17"
-        parts.append(f'<circle cx="28" cy="{cy}" r="6" fill="{fill}" stroke="#a397f7" stroke-width="2"/>')
-        parts.append(f'<text x="48" y="{cy + 5}" class="fg" font-size="14" font-weight="700">{escape(cat)}</text>')
-        x = 180
-        for name, color, sig, sc in items:
-            w = 38 + len(name) * 7.1
+# ---------------------------------------------------------------- loadout
+def loadout():
+    top, row_h = 66, 52
+    H = top + len(LOADOUT) * row_h + 16
+    parts = [arena_bg(W, H),
+             f'<polygon points="{para(0, 0, 170, 40, -16)}" fill="{BLUE}"/>',
+             '<text x="22" y="27" font-size="18" font-weight="900" letter-spacing="1">LOADOUT</text>',
+             '<text x="186" y="27" font-size="14" font-weight="600" fill="#c7d3f2">Stack tecnológico</text>',
+             f'<polygon points="{para(W - 150, 14, 60, 8, 4)}" fill="{BLUE}"/><polygon points="{para(W - 84, 14, 60, 8, 4)}" fill="{ORANGE}"/>',
+             f'<line x1="16" y1="50.5" x2="{W - 16}" y2="50.5" stroke="#24345f"/>']
+    d = .15
+    for i, (slot, cat, items) in enumerate(LOADOUT):
+        y = top + i * row_h
+        parts.append(f'<g class="in" style="animation-delay:{d:.2f}s">'
+                     f'<text x="26" y="{y + 15}" font-size="10.5" font-weight="700" fill="{ORANGE}" letter-spacing="1.5">{escape(slot.upper())}</text>'
+                     f'<text x="26" y="{y + 35}" font-size="17" font-weight="900">{escape(cat.upper())}</text></g>')
+        x = 200
+        for name, color in items:
+            w = tw(name.upper(), 8.4) + 42
+            d += .07
             parts.append(
-                f'<g class="j" style="animation-delay:{delay:.2f}s">'
-                f'<rect x="{x}" y="{cy - 13}" width="{w:.0f}" height="26" rx="6" fill="#161624" stroke="#2a2a3d"/>'
-                f'<rect x="{x + 6}" y="{cy - 8}" width="16" height="16" rx="3" fill="{color}"/>'
-                f'<text x="{x + 14}" y="{cy + 3.5}" text-anchor="middle" font-size="8.5" font-weight="800" fill="{sc}">{escape(sig)}</text>'
-                f'<text x="{x + 30}" y="{cy + 4.5}" class="soft" font-size="12.5">{escape(name)}</text></g>')
-            x += w + 10
-            delay += .06
-        if r < len(STACK) - 1:
-            parts.append(f'<line x1="48" y1="{y + row_h - 2}" x2="{W-20}" y2="{y + row_h - 2}" stroke="#1d1d2c" stroke-dasharray="3 4"/>')
-    alt = "GET /stack — " + ". ".join(f"{c}: {', '.join(i[0] for i in items)}" for c, items in STACK)
+                f'<g class="in" style="animation-delay:{d:.2f}s">'
+                f'<polygon points="{para(x, y + 4, w, 34, 9)}" fill="#13224d" stroke="#2a3d73"/>'
+                f'<polygon points="{para(x, y + 4, 18, 34, 9)}" fill="{color}"/>'
+                f'<text x="{x + 24}" y="{y + 26}" font-size="13.5" font-weight="800">{escape(name.upper())}</text></g>')
+            x += w + 6
+        if i < len(LOADOUT) - 1:
+            parts.append(f'<line x1="26" y1="{y + row_h - 3}" x2="{W - 26}" y2="{y + row_h - 3}" stroke="#18264d" stroke-dasharray="2 5"/>')
+    alt = "Loadout / stack tecnológico — " + ". ".join(f"{c}: {', '.join(n for n, _ in it)}" for _, c, it in LOADOUT)
     return svg(W, H, alt, "\n".join(parts))
 
-def h_garage():
-    return svg(W, 56, "GET /garage — Garage", header_bar("/garage", "Garage"))
+def h_arena():
+    h = 50
+    body = f'''<polygon points="{para(0, 6, 190, 38, -16)}" fill="{ORANGE}"/>
+<text x="22" y="32" font-size="18" font-weight="900" letter-spacing="1">FREE PLAY</text>
+<text x="206" y="32" font-size="14" font-weight="600" fill="#c7d3f2">Garage · cada tecnología con su auto</text>
+<polygon points="{para(W - 150, 21, 60, 8, 4)}" fill="{BLUE}"/><polygon points="{para(W - 84, 21, 60, 8, 4)}" fill="{ORANGE}"/>'''
+    return svg(W, h, "Free play — Garage", body)
 
 FILES = {
     "hero.svg": hero(),
-    "btn-linkedin.svg": boton("linkedin", "LinkedIn", LINKEDIN, "↗"),
-    "btn-email.svg": boton("email", "Email", EMAIL, "→"),
-    "stack.svg": stack(),
-    "h-garage.svg": h_garage(),
+    "btn-linkedin.svg": boton("linkedin", "Agregar amigo", "LinkedIn", LINKEDIN, BLUE),
+    "btn-email.svg": boton("email", "Enviar mensaje", "Email", EMAIL, ORANGE),
+    "stack.svg": loadout(),
+    "h-arena.svg": h_arena(),
 }
 for name, content in FILES.items():
     (OUT / name).write_text(content, encoding="utf-8")

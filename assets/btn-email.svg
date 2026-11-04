@@ -1,21 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="440" height="64" viewBox="0 0 440 64" role="img" aria-labelledby="t">
 <title id="t">Email: samulopez424@gmail.com</title>
 <style>
-  text { font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; }
-  :where(text:not([fill])) { fill: #9a9ab0; }
+  text { font-family: Bahnschrift, 'DIN Alternate', 'Arial Narrow', 'Segoe UI', Arial, sans-serif; font-style: italic; }
+  :where(text:not([fill])) { fill: #ffffff; }
   :where(text:not([font-size])) { font-size: 13px; }
-  .mono { font-family: Consolas, Menlo, 'Fira Code', 'Courier New', monospace; }
-  .fg { fill: #e6e6f0; } .soft { fill: #c9c9d9; } .brand { fill: #a397f7; } .ok { fill: #10b981; } .cyan { fill: #00b4d8; }
-  .k { fill: #a397f7; } .s { fill: #34d399; } .p { fill: #8b8ba3; }
-  .j { animation: show .3s ease-out backwards; }
-  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  :where(text:not([font-weight])) { font-weight: 700; }
+  .in { animation: slide .45s cubic-bezier(.2,.8,.3,1) backwards; }
+  .fade { animation: fade .4s ease-out backwards; }
+  @keyframes slide { from { transform: translateX(-26px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .ring { stroke-dashoffset: 0 !important; } }
+
+  .shine { animation: shine 4s ease-in-out infinite; }
+  @keyframes shine { 0%, 70% { transform: translateX(-120px); } 100% { transform: translateX(560px); } }
 </style>
-<rect x="4.5" y="4.5" width="431" height="55" rx="10" fill="#13131f" stroke="#26263a"/>
-<rect x="16" y="13" width="36" height="36" rx="8" fill="#5b3fd6"/>
-<g transform="translate(0 -0)"><path d="M24 22h20a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H24a2 2 0 0 1-2-2V24a2 2 0 0 1 2-2zm0 2v.5l10 6.5 10-6.5V24H24zm20 3.2-10 6.4-10-6.4V38h20z" fill="#fff"/></g>
-<text x="66" y="30" class="fg" font-size="15" font-weight="700">Email</text>
-<text x="66" y="47" class="mono" font-size="11.5">samulopez424@gmail.com</text>
-<text x="416" y="38" text-anchor="end" class="soft" font-size="18">→</text>
+<defs>
+  <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1838"/><stop offset="1" stop-color="#070d22"/></linearGradient>
+  <radialGradient id="gb" cx="0" cy="0" r="1"><stop offset="0" stop-color="#1f8fff" stop-opacity=".35"/><stop offset="1" stop-color="#1f8fff" stop-opacity="0"/></radialGradient>
+  <radialGradient id="go" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".3"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
+  <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse"><path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M14 32.33V48.5" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<clipPath id="b"><polygon points="20,4 434,4 420,60 6,60"/></clipPath>
+<polygon points="20,4 434,4 420,60 6,60" fill="#0c1a3f" stroke="#ff7a1a" stroke-width="1.5"/>
+<g clip-path="url(#b)">
+  <polygon points="20,4 72,4 58,60 6,60" fill="#ff7a1a"/>
+  <rect class="shine" x="0" y="0" width="80" height="64" fill="url(#sh)" transform="skewX(-20)"/>
+</g>
+<path d="M29 23h22a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H29a2 2 0 0 1-2-2V25a2 2 0 0 1 2-2zm0 2v.6l11 6.8 11-6.8V25H29zm22 3.3-11 6.7-11-6.7V39h22z" fill="#fff"/>
+<text x="84" y="25" font-size="10.5" font-weight="700" fill="#ff7a1a" letter-spacing="1.5">ENVIAR MENSAJE</text>
+<text x="84" y="44" font-size="17" font-weight="900">EMAIL</text>
+<text x="150" y="44" font-size="12" font-weight="500" fill="#c7d3f2">samulopez424@gmail.com</text>
+<polygon points="396,26 410,32 396,38" fill="#ff7a1a"/>
 </svg>

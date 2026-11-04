@@ -201,7 +201,7 @@ def scene():
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Tecnologías representadas como autos estilo Rocket League (Octane, Dominus y Fennec) haciendo acrobacias en un estadio">
   <style>
-    text {{ font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; font-style: italic; letter-spacing: .4px; text-anchor: middle; fill: #e6edf3; }}
+    text {{ font-family: Bahnschrift, 'DIN Alternate', 'Arial Narrow', 'Segoe UI', Arial, sans-serif; font-size: 15px; font-weight: 700; font-style: italic; letter-spacing: .4px; text-anchor: middle; fill: #e6edf3; }}
     .a {{ transform-box: view-box; transform-origin: var(--ox) var(--oy); }}
     .line {{ stroke: #fff; stroke-opacity: .22; stroke-width: 2; stroke-dasharray: 16 10; animation: road .45s linear infinite; }}
     .wheel {{ transform-box: fill-box; transform-origin: center; animation: spin .4s linear infinite; }}
@@ -235,7 +235,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
   </style>
 
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e0e17"/><stop offset="1" stop-color="#13132a"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1022"/><stop offset="1" stop-color="#121a33"/></linearGradient>
     <radialGradient id="blue" cx="0" cy="0" r="1"><stop offset="0" stop-color="#2d7cff" stop-opacity=".35"/><stop offset="1" stop-color="#2d7cff" stop-opacity="0"/></radialGradient>
     <radialGradient id="orange" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".3"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
     <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fc4ff"/><stop offset=".45" stop-color="#9fc4ff" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity=".5"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
