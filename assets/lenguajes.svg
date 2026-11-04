@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 215" width="760" height="215" role="img" aria-label="Tecnologías representadas como autos de colores">
+  <style>
+    text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; text-anchor: middle; fill: #24292f; }
+    @media (prefers-color-scheme: dark) { text { fill: #e6edf3; } }
+  </style>
+  <defs>
+    <g id="car">
+      <path d="M6 31 L-9 34 L6 37 Z" fill="#FF7A1A"/>
+      <path d="M6 38 L6 28 Q6 24 12 23 L34 20 L46 8 Q48 6 52 6 L84 6 Q88 6 90 8 L102 20 L112 23 Q118 24 118 29 L118 38 Z" fill="currentColor"/>
+      <path d="M47 19 L55 11 L82 11 L91 19 Z" fill="#fff" opacity=".85"/>
+      <circle cx="30" cy="38" r="10" fill="#1b1b1b"/><circle cx="30" cy="38" r="4" fill="#cfd4da"/>
+      <circle cx="92" cy="38" r="10" fill="#1b1b1b"/><circle cx="92" cy="38" r="4" fill="#cfd4da"/>
+    </g>
+  </defs>
+
+  <!-- Fila 1 -->
+  <use href="#car" x="20"  y="15" color="#9B4F96"/><text x="80"  y="82">C#</text>
+  <use href="#car" x="168" y="15" color="#512BD4"/><text x="228" y="82">.NET</text>
+  <use href="#car" x="316" y="15" color="#F7DF1E"/><text x="376" y="82">JavaScript</text>
+  <use href="#car" x="464" y="15" color="#E34F26"/><text x="524" y="82">HTML5</text>
+  <use href="#car" x="612" y="15" color="#1572B6"/><text x="672" y="82">CSS3</text>
+
+  <!-- Fila 2 -->
+  <use href="#car" x="94"  y="115" color="#00758F"/><text x="154" y="182">MySQL</text>
+  <use href="#car" x="242" y="115" color="#CC2927"/><text x="302" y="182">SQL Server</text>
+  <use href="#car" x="390" y="115" color="#85EA2D"/><text x="450" y="182">Swagger</text>
+  <use href="#car" x="538" y="115" color="#FF6C37"/><text x="598" y="182">Postman</text>
+</svg>
