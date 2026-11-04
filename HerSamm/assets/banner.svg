@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1a3a"/>
+      <stop offset="1" stop-color="#1b3a8a"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#ffd54a"/>
+      <stop offset="0.5" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="0.35" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#9fb4d8"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="260" fill="url(#sky)"/>
+
+  <!-- estrellas -->
+  <g fill="#ffffff">
+    <circle cx="80" cy="40" r="1.5"><animate attributeName="opacity" values="1;0.2;1" dur="2.5s" repeatCount="indefinite"/></circle>
+    <circle cx="260" cy="70" r="1.2"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/></circle>
+    <circle cx="520" cy="35" r="1.6"><animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="700" cy="80" r="1.3"><animate attributeName="opacity" values="0.4;1;0.4" dur="3.5s" repeatCount="indefinite"/></circle>
+    <circle cx="840" cy="30" r="1.5"><animate attributeName="opacity" values="1;0.3;1" dur="2.8s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <!-- cancha -->
+  <rect y="195" width="900" height="65" fill="#0f5a2f"/>
+  <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="2">
+    <line x1="450" y1="195" x2="450" y2="260"/>
+    <line x1="0" y1="196" x2="900" y2="196"/>
+  </g>
+
+  <!-- arco -->
+  <g stroke="#ffffff" stroke-opacity="0.7" stroke-width="3" fill="none">
+    <rect x="830" y="150" width="60" height="45"/>
+  </g>
+  <g stroke="#ffffff" stroke-opacity="0.25" stroke-width="1">
+    <line x1="840" y1="150" x2="840" y2="195"/>
+    <line x1="850" y1="150" x2="850" y2="195"/>
+    <line x1="860" y1="150" x2="860" y2="195"/>
+    <line x1="870" y1="150" x2="870" y2="195"/>
+    <line x1="830" y1="165" x2="890" y2="165"/>
+    <line x1="830" y1="180" x2="890" y2="180"/>
+  </g>
+
+  <!-- pelota -->
+  <g>
+    <circle r="16" fill="url(#ball)" stroke="#6a7fa8" stroke-width="1.5">
+      <animate attributeName="cx" values="520;800;800;520" keyTimes="0;0.55;0.9;1" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="179;179;179;179" dur="6s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- auto + boost -->
+  <g>
+    <animateTransform attributeName="transform" type="translate"
+      values="-120 0; 480 0; 480 0; -120 0" keyTimes="0;0.5;0.9;1" dur="6s" repeatCount="indefinite"/>
+    <!-- llama de boost -->
+    <path d="M18 168 L-45 160 L-30 170 L-60 176 L-30 182 L-45 192 L18 184 Z" fill="url(#flame)">
+      <animate attributeName="opacity" values="1;0.5;1" dur="0.25s" repeatCount="indefinite"/>
+    </path>
+    <!-- carroceria -->
+    <path d="M10 186 L10 170 L40 164 L62 150 L100 150 L124 166 L150 170 L150 186 Z" fill="#ff7a1a" stroke="#c4540a" stroke-width="2"/>
+    <path d="M66 154 L98 154 L116 167 L58 167 Z" fill="#9fd4ff" stroke="#2c4f7a" stroke-width="1.5"/>
+    <rect x="12" y="172" width="136" height="4" fill="#0b1a3a" opacity="0.35"/>
+    <!-- ruedas -->
+    <g fill="#10151f" stroke="#cfd8e6" stroke-width="2">
+      <circle cx="42" cy="188" r="12"/>
+      <circle cx="120" cy="188" r="12"/>
+    </g>
+    <g fill="#cfd8e6">
+      <circle cx="42" cy="188" r="3"/>
+      <circle cx="120" cy="188" r="3"/>
+    </g>
+  </g>
+
+  <!-- texto -->
+  <text x="450" y="85" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="800" fill="#ffffff" letter-spacing="2">HerSamm</text>
+  <text x="450" y="118" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#ffd54a" letter-spacing="4">DESARROLLADOR .NET</text>
+  <text x="450" y="146" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#9fb4d8">&#9917; GOAL! &#183; C# &#183; ASP.NET Core &#183; Clean Architecture</text>
+</svg>
