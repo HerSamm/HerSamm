@@ -2,7 +2,7 @@
 <p align="center">Desarrollador .NET · Mariano Roque Alonso, Paraguay 🇵🇾</p>
 
 <p align="center">
-  <img src="assets/lenguajes.svg" alt="Tecnologías: C#, .NET, JavaScript, HTML5, CSS3, MySQL, SQL Server, Swagger y Postman" width="760"/>
+  <img src="assets/lenguajes.svg?v=2" alt="Tecnologías: C#, .NET, JavaScript, HTML5, CSS3, MySQL, SQL Server, Swagger y Postman" width="760"/>
 </p>
 
 ## Sobre mí
