@@ -1,28 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 215" width="760" height="215" role="img" aria-label="Tecnologías representadas como autos de colores">
   <style>
-    text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; text-anchor: middle; fill: #24292f; }
+    text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; text-anchor: middle; fill: #24292f; animation: fade .6s ease-out both; animation-delay: var(--d, 0s); }
     @media (prefers-color-scheme: dark) { text { fill: #e6edf3; } }
+
+    /* Entrada: el auto llega desde la izquierda */
+    .drive { animation: drive 1.3s cubic-bezier(.15,.7,.25,1) both; animation-delay: var(--d, 0s); }
+    /* Reposo: leve vaivén */
+    .bob   { animation: bob 1.8s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) + 1.3s); }
+    /* Ruedas giran mientras llega */
+    .wheel { transform-box: fill-box; transform-origin: center; animation: spin 1.3s cubic-bezier(.15,.7,.25,1) both; animation-delay: var(--d, 0s); }
+    /* Llama de boost parpadea */
+    .flame { transform-box: fill-box; transform-origin: right center; animation: flicker .22s ease-in-out infinite alternate; }
+
+    @keyframes drive   { from { transform: translateX(-140px); opacity: 0; } 30% { opacity: 1; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes bob     { from { transform: translateY(0); } to { transform: translateY(-2.5px); } }
+    @keyframes spin    { from { transform: rotate(0); } to { transform: rotate(720deg); } }
+    @keyframes flicker { from { transform: scaleX(.7); opacity: .75; } to { transform: scaleX(1.35); opacity: 1; } }
+    @keyframes fade    { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .drive, .bob, .wheel, .flame, text { animation: none; }
+    }
   </style>
   <defs>
     <g id="car">
-      <path d="M6 31 L-9 34 L6 37 Z" fill="#FF7A1A"/>
+      <path class="flame" d="M6 31 L-9 34 L6 37 Z" fill="#FF7A1A"/>
       <path d="M6 38 L6 28 Q6 24 12 23 L34 20 L46 8 Q48 6 52 6 L84 6 Q88 6 90 8 L102 20 L112 23 Q118 24 118 29 L118 38 Z" fill="currentColor"/>
       <path d="M47 19 L55 11 L82 11 L91 19 Z" fill="#fff" opacity=".85"/>
-      <circle cx="30" cy="38" r="10" fill="#1b1b1b"/><circle cx="30" cy="38" r="4" fill="#cfd4da"/>
-      <circle cx="92" cy="38" r="10" fill="#1b1b1b"/><circle cx="92" cy="38" r="4" fill="#cfd4da"/>
+      <g class="wheel"><circle cx="30" cy="38" r="10" fill="#1b1b1b"/><circle cx="30" cy="38" r="4" fill="#cfd4da"/><circle cx="30" cy="33" r="1.6" fill="#555"/></g>
+      <g class="wheel"><circle cx="92" cy="38" r="10" fill="#1b1b1b"/><circle cx="92" cy="38" r="4" fill="#cfd4da"/><circle cx="92" cy="33" r="1.6" fill="#555"/></g>
     </g>
   </defs>
 
   <!-- Fila 1 -->
-  <use href="#car" x="20"  y="15" color="#9B4F96"/><text x="80"  y="82">C#</text>
-  <use href="#car" x="168" y="15" color="#512BD4"/><text x="228" y="82">.NET</text>
-  <use href="#car" x="316" y="15" color="#F7DF1E"/><text x="376" y="82">JavaScript</text>
-  <use href="#car" x="464" y="15" color="#E34F26"/><text x="524" y="82">HTML5</text>
-  <use href="#car" x="612" y="15" color="#1572B6"/><text x="672" y="82">CSS3</text>
+  <g class="drive" style="--d:0s"><g class="bob"><use href="#car" x="20"  y="15" color="#9B4F96"/></g></g><text x="80"  y="82" style="--d:.5s">C#</text>
+  <g class="drive" style="--d:.15s"><g class="bob"><use href="#car" x="168" y="15" color="#512BD4"/></g></g><text x="228" y="82" style="--d:.65s">.NET</text>
+  <g class="drive" style="--d:.3s"><g class="bob"><use href="#car" x="316" y="15" color="#F7DF1E"/></g></g><text x="376" y="82" style="--d:.8s">JavaScript</text>
+  <g class="drive" style="--d:.45s"><g class="bob"><use href="#car" x="464" y="15" color="#E34F26"/></g></g><text x="524" y="82" style="--d:.95s">HTML5</text>
+  <g class="drive" style="--d:.6s"><g class="bob"><use href="#car" x="612" y="15" color="#1572B6"/></g></g><text x="672" y="82" style="--d:1.1s">CSS3</text>
 
   <!-- Fila 2 -->
-  <use href="#car" x="94"  y="115" color="#00758F"/><text x="154" y="182">MySQL</text>
-  <use href="#car" x="242" y="115" color="#CC2927"/><text x="302" y="182">SQL Server</text>
-  <use href="#car" x="390" y="115" color="#85EA2D"/><text x="450" y="182">Swagger</text>
-  <use href="#car" x="538" y="115" color="#FF6C37"/><text x="598" y="182">Postman</text>
+  <g class="drive" style="--d:.75s"><g class="bob"><use href="#car" x="94"  y="115" color="#00758F"/></g></g><text x="154" y="182" style="--d:1.25s">MySQL</text>
+  <g class="drive" style="--d:.9s"><g class="bob"><use href="#car" x="242" y="115" color="#CC2927"/></g></g><text x="302" y="182" style="--d:1.4s">SQL Server</text>
+  <g class="drive" style="--d:1.05s"><g class="bob"><use href="#car" x="390" y="115" color="#85EA2D"/></g></g><text x="450" y="182" style="--d:1.55s">Swagger</text>
+  <g class="drive" style="--d:1.2s"><g class="bob"><use href="#car" x="538" y="115" color="#FF6C37"/></g></g><text x="598" y="182" style="--d:1.7s">Postman</text>
 </svg>
